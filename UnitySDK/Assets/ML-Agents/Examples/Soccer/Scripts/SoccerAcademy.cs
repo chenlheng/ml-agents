@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
@@ -7,7 +7,6 @@ public class SoccerAcademy : Academy
 {
 
     public Brain brainStriker;
-    public Brain brainGoalie;
     public Material redMaterial;
     public Material blueMaterial;
     public float spawnAreaMarginMultiplier;
@@ -20,8 +19,6 @@ public class SoccerAcademy : Academy
 
     public float strikerPunish; //if opponents scores, the striker gets this neg reward (-1)
     public float strikerReward; //if team scores a goal they get a reward (+1)
-    public float goaliePunish; //if opponents score, goalie gets this neg reward (-1)
-    public float goalieReward; //if team scores, goalie gets this reward (currently 0...no reward. can play with this later)
 
     void Start()
     {

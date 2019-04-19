@@ -63,7 +63,7 @@ def run_training(sub_id: int, run_seed: int, run_options, process_queue):
                 '/{docker_target_name}/{curriculum_folder}'.format(
                     docker_target_name=docker_target_name,
                     curriculum_folder=curriculum_folder)
-        model_path = '/{docker_target_name}/models/{run_id}-{sub_id}'.format(
+        model_path = '/{docker _target_name}/models/{run_id}-{sub_id}'.format(
             docker_target_name=docker_target_name,
             run_id=run_id,
             sub_id=sub_id)

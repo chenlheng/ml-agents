@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,8 +19,6 @@ public class SoccerFieldArea : MonoBehaviour
     public Transform blueGoal;
     public AgentSoccer redStriker;
     public AgentSoccer blueStriker;
-    public AgentSoccer redGoalie;
-    public AgentSoccer blueGoalie;
     public GameObject ball;
     [HideInInspector]
     public Rigidbody ballRB;
@@ -97,11 +95,11 @@ public class SoccerFieldArea : MonoBehaviour
         {
             if (ps.agentScript.team == scoredTeam)
             {
-                RewardOrPunishPlayer(ps, academy.strikerReward, academy.goalieReward);
+                RewardOrPunishPlayer(ps, academy.strikerReward);
             }
             else
             {
-                RewardOrPunishPlayer(ps, academy.strikerPunish, academy.goaliePunish);
+                RewardOrPunishPlayer(ps, academy.strikerPunish);
             }
             if (academy.randomizePlayersTeamForTraining)
             {
@@ -123,15 +121,11 @@ public class SoccerFieldArea : MonoBehaviour
         }
     }
 
-    public void RewardOrPunishPlayer(PlayerState ps, float striker, float goalie)
+    public void RewardOrPunishPlayer(PlayerState ps, float striker)
     {
         if (ps.agentScript.agentRole == AgentSoccer.AgentRole.Striker)
         {
             ps.agentScript.AddReward(striker);
-        }
-        if (ps.agentScript.agentRole == AgentSoccer.AgentRole.Goalie)
-        {
-            ps.agentScript.AddReward(goalie);
         }
         ps.agentScript.Done();  //all agents need to be reset
     }
@@ -140,10 +134,7 @@ public class SoccerFieldArea : MonoBehaviour
     public Vector3 GetRandomSpawnPos(AgentSoccer.AgentRole role, AgentSoccer.Team team)
     {
         float xOffset = 0f;
-        if (role == AgentSoccer.AgentRole.Goalie)
-        {
-            xOffset = 13f;
-        }
+
         if (role == AgentSoccer.AgentRole.Striker)
         {
             xOffset = 7f;
@@ -162,8 +153,8 @@ public class SoccerFieldArea : MonoBehaviour
     public Vector3 GetBallSpawnPosition()
     {
         var randomSpawnPos = ground.transform.position + 
-                             new Vector3(0f, 0f, 0f) 
-                             + (Random.insideUnitSphere * 2);
+                                new Vector3(0f, 0f, 0f);  // ball respawns in the center of field
+                             // + (Random.insideUnitSphere * 2);
         randomSpawnPos.y = ground.transform.position.y + 2;
         return randomSpawnPos;
     }

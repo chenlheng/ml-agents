@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using MLAgents;
 
 public class AgentSoccer : Agent
@@ -11,13 +11,12 @@ public class AgentSoccer : Agent
     }
     public enum AgentRole
     {
-        Striker, 
-        Goalie
+        Striker
     }
     
     public Team team;
     public AgentRole agentRole;
-    float kickPower;
+    float kickPower, timePenalty=-0.5f;
     int playerIndex;
     public SoccerFieldArea area;
     
@@ -78,21 +77,62 @@ public class AgentSoccer : Agent
 
     public override void CollectObservations()
     {
-        float rayDistance = 20f;
+
+        // Ray-based observation
+        float rayDistance = 40f;
         float[] rayAngles = { 0f, 45f, 90f, 135f, 180f, 110f, 70f };
         string[] detectableObjects;
+
+        int teamId = 0;
+        Transform teamGoal, opponentGoal;
+
         if (team == Team.Red)
         {
             detectableObjects = new[] { "ball", "redGoal", "blueGoal",
                 "wall", "redAgent", "blueAgent" };
+            teamId = 0;
+            teamGoal = area.redGoal;
+            opponentGoal = area.blueGoal;
         }
         else
         {
             detectableObjects = new[] { "ball", "blueGoal", "redGoal",
                 "wall", "blueAgent", "redAgent" };
+            teamId = 1;
+            teamGoal = area.blueGoal;
+            opponentGoal = area.redGoal;
         }
+
         AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 0f));
-        AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 1f, 0f));
+        // explanation: https://github.com/Unity-Technologies/ml-agents/issues/1483
+        // 6-dim onehot vec + [unknown_flag, distance]
+        // AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 1f, 0f));
+        AddVectorObs(playerIndex);
+        AddVectorObs(teamId);
+        AddVectorObs(transform.position.x);
+        AddVectorObs(transform.position.y);
+        AddVectorObs(transform.position.z);
+        AddVectorObs(agentRb.velocity.x);
+        AddVectorObs(agentRb.velocity.y);
+        AddVectorObs(agentRb.velocity.z);
+        AddVectorObs(agentRb.angularVelocity.x);
+        AddVectorObs(agentRb.angularVelocity.y);
+        AddVectorObs(agentRb.angularVelocity.z);
+        AddVectorObs(area.ball.transform.position.x);
+        AddVectorObs(area.ball.transform.position.y);
+        AddVectorObs(area.ball.transform.position.z);
+        AddVectorObs(area.ballRB.velocity.x);
+        AddVectorObs(area.ballRB.velocity.y);
+        AddVectorObs(area.ballRB.velocity.z);
+        AddVectorObs(area.ballRB.angularVelocity.x);
+        AddVectorObs(area.ballRB.angularVelocity.y);
+        AddVectorObs(area.ballRB.angularVelocity.z);
+        AddVectorObs(teamGoal.position.x);
+        AddVectorObs(teamGoal.position.y);
+        AddVectorObs(teamGoal.position.z);
+        AddVectorObs(opponentGoal.position.x);
+        AddVectorObs(opponentGoal.position.y);
+        AddVectorObs(opponentGoal.position.z);
     }
 
     public void MoveAgent(float[] act)
@@ -103,27 +143,7 @@ public class AgentSoccer : Agent
         int action = Mathf.FloorToInt(act[0]);
 
         // Goalies and Strikers have slightly different action spaces.
-        if (agentRole == AgentRole.Goalie)
-        {
-            kickPower = 0f;
-            switch (action)
-            {
-                case 1:
-                    dirToGo = transform.forward * 1f;
-                    kickPower = 1f;
-                    break;
-                case 2:
-                    dirToGo = transform.forward * -1f;
-                    break;
-                case 4:
-                    dirToGo = transform.right * -1f;
-                    break;
-                case 3:
-                    dirToGo = transform.right * 1f;
-                    break;
-            }
-        }
-        else
+        if (agentRole == AgentRole.Striker)
         {
             kickPower = 0f;
             switch (action)
@@ -161,12 +181,8 @@ public class AgentSoccer : Agent
         // Existential penalty for strikers.
         if (agentRole == AgentRole.Striker)
         {
-            AddReward(-1f / 3000f);
-        }
-        // Existential bonus for goalies.
-        if (agentRole == AgentRole.Goalie)
-        {
-            AddReward(1f / 3000f);
+            // AddReward(-1f / 3000f);
+            AddReward(timePenalty);
         }
         MoveAgent(vectorAction);
 

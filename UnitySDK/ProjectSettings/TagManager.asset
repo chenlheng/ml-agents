@@ -26,6 +26,8 @@ TagManager:
   - pyramid
   - switchOn
   - stone
+  - redBackLineWall
+  - blueBackLineWall
   layers:
   - Default
   - TransparentFX
@@ -39,8 +41,8 @@ TagManager:
   - ball
   - goalieWall
   - goalie
-  - strikerWall
   - striker
+  - redBackLineWall,blueBackLineWall
   - 
   - 
   - 
