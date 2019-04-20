@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 41949314}
   - component: {fileID: 41949313}
   - component: {fileID: 41949312}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: BlueStriker (4)
   m_TagString: blueAgent
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2688ef4a36349f9aa010020c32d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af, type: 2}
+  brain: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
   agentParameters:
     agentCameras: []
     agentRenderTextures: []
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 55712356}
   - component: {fileID: 55712355}
   - component: {fileID: 55712354}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: RedStriker (3)
   m_TagString: redAgent
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2688ef4a36349f9aa010020c32d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af, type: 2}
+  brain: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
   agentParameters:
     agentCameras: []
     agentRenderTextures: []
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 129173454}
   - component: {fileID: 129173453}
   - component: {fileID: 129173452}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 195189923}
   - component: {fileID: 195189922}
   - component: {fileID: 195189921}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 241311457}
   - component: {fileID: 241311456}
   - component: {fileID: 241311455}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +814,7 @@ GameObject:
   - component: {fileID: 455231855}
   - component: {fileID: 455231854}
   - component: {fileID: 455231853}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 554927047}
   - component: {fileID: 554927046}
   - component: {fileID: 554927045}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1100,6 +1100,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoccerFieldTwos
       objectReference: {fileID: 0}
+    - target: {fileID: 479821180176019426, guid: 54f3340298537426e96a6cc530e2d5d8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028563761456807814, guid: 54f3340298537426e96a6cc530e2d5d8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267929511216263354, guid: 54f3340298537426e96a6cc530e2d5d8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 947080814408846324, guid: 54f3340298537426e96a6cc530e2d5d8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774200824601221798, guid: 54f3340298537426e96a6cc530e2d5d8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4558743310993102, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1212,7 +1237,7 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af,
+      objectReference: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18,
         type: 2}
     - target: {fileID: 114492261207303438, guid: 54f3340298537426e96a6cc530e2d5d8,
         type: 3}
@@ -1233,7 +1258,7 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af,
+      objectReference: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18,
         type: 2}
     - target: {fileID: 114850431417842684, guid: 54f3340298537426e96a6cc530e2d5d8,
         type: 3}
@@ -1256,35 +1281,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1095606497496374, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1131626411948014, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1765331596145090, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1368751799352372, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1202386259384864, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932259700048604, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267929511216263354, guid: 54f3340298537426e96a6cc530e2d5d8,
-        type: 3}
-      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 479821180176019426, guid: 54f3340298537426e96a6cc530e2d5d8,
-        type: 3}
+    - target: {fileID: 1932259700048604, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
@@ -1303,21 +1318,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c8c47422cd61543bca620e2abf515c3e, type: 2}
-    - target: {fileID: 947080814408846324, guid: 54f3340298537426e96a6cc530e2d5d8,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774200824601221798, guid: 54f3340298537426e96a6cc530e2d5d8,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2028563761456807814, guid: 54f3340298537426e96a6cc530e2d5d8,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3724805150103451988, guid: 54f3340298537426e96a6cc530e2d5d8,
         type: 3}
       propertyPath: m_Layer
@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 817809291}
   - component: {fileID: 817809290}
   - component: {fileID: 817809289}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,7 +1502,7 @@ GameObject:
   - component: {fileID: 990135957}
   - component: {fileID: 990135956}
   - component: {fileID: 990135955}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1669,7 +1669,7 @@ GameObject:
   - component: {fileID: 1156345650}
   - component: {fileID: 1156345649}
   - component: {fileID: 1156345648}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: BlueStriker (3)
   m_TagString: blueAgent
   m_Icon: {fileID: 0}
@@ -1729,7 +1729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2688ef4a36349f9aa010020c32d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af, type: 2}
+  brain: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
   agentParameters:
     agentCameras: []
     agentRenderTextures: []
@@ -1814,7 +1814,7 @@ GameObject:
   - component: {fileID: 1247223526}
   - component: {fileID: 1247223525}
   - component: {fileID: 1247223524}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,7 +1905,7 @@ GameObject:
   - component: {fileID: 1305366721}
   - component: {fileID: 1305366720}
   - component: {fileID: 1305366719}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1996,7 +1996,7 @@ GameObject:
   - component: {fileID: 1320911982}
   - component: {fileID: 1320911981}
   - component: {fileID: 1320911980}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2161,8 +2161,9 @@ MonoBehaviour:
   broadcastHub:
     broadcastingBrains:
     - {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
-    _brainsToControl: []
-  maxSteps: 10000
+    _brainsToControl:
+    - {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
+  maxSteps: 10000000
   trainingConfiguration:
     width: 800
     height: 500
@@ -2183,11 +2184,11 @@ MonoBehaviour:
   spawnAreaMarginMultiplier: 0
   gravityMultiplier: 1
   randomizePlayersTeamForTraining: 0
-  maxAgentSteps: 10000
+  maxAgentSteps: 10000000
   agentRunSpeed: 2
   agentRotationSpeed: 15
-  strikerPunish: -10
-  strikerReward: 10
+  strikerPunish: -1
+  strikerReward: 1
 --- !u!4 &1574236049
 Transform:
   m_ObjectHideFlags: 0
@@ -2214,7 +2215,7 @@ GameObject:
   - component: {fileID: 1603809102}
   - component: {fileID: 1603809101}
   - component: {fileID: 1603809100}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2305,7 +2306,7 @@ GameObject:
   - component: {fileID: 1627435001}
   - component: {fileID: 1627435000}
   - component: {fileID: 1627434999}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2396,7 +2397,7 @@ GameObject:
   - component: {fileID: 1722409806}
   - component: {fileID: 1722409805}
   - component: {fileID: 1722409804}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2487,7 +2488,7 @@ GameObject:
   - component: {fileID: 1725129269}
   - component: {fileID: 1725129268}
   - component: {fileID: 1725129267}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2578,7 +2579,7 @@ GameObject:
   - component: {fileID: 1803699078}
   - component: {fileID: 1803699077}
   - component: {fileID: 1803699076}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2672,7 +2673,7 @@ GameObject:
   - component: {fileID: 1824102394}
   - component: {fileID: 1824102393}
   - component: {fileID: 1824102392}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: BlueStriker (2)
   m_TagString: blueAgent
   m_Icon: {fileID: 0}
@@ -2732,7 +2733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2688ef4a36349f9aa010020c32d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af, type: 2}
+  brain: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
   agentParameters:
     agentCameras: []
     agentRenderTextures: []
@@ -2820,7 +2821,7 @@ GameObject:
   - component: {fileID: 1824332704}
   - component: {fileID: 1824332703}
   - component: {fileID: 1824332702}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: BlueStriker (1)
   m_TagString: blueAgent
   m_Icon: {fileID: 0}
@@ -2880,7 +2881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2688ef4a36349f9aa010020c32d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af, type: 2}
+  brain: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
   agentParameters:
     agentCameras: []
     agentRenderTextures: []
@@ -2983,7 +2984,7 @@ GameObject:
   - component: {fileID: 1916034388}
   - component: {fileID: 1916034387}
   - component: {fileID: 1916034386}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3077,7 +3078,7 @@ GameObject:
   - component: {fileID: 2009368891}
   - component: {fileID: 2009368890}
   - component: {fileID: 2009368889}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: RedStriker (2)
   m_TagString: redAgent
   m_Icon: {fileID: 0}
@@ -3137,7 +3138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2688ef4a36349f9aa010020c32d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af, type: 2}
+  brain: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
   agentParameters:
     agentCameras: []
     agentRenderTextures: []
@@ -3225,7 +3226,7 @@ GameObject:
   - component: {fileID: 2012692489}
   - component: {fileID: 2012692488}
   - component: {fileID: 2012692487}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: RedStriker (1)
   m_TagString: redAgent
   m_Icon: {fileID: 0}
@@ -3285,7 +3286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2688ef4a36349f9aa010020c32d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af, type: 2}
+  brain: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
   agentParameters:
     agentCameras: []
     agentRenderTextures: []
@@ -3373,7 +3374,7 @@ GameObject:
   - component: {fileID: 2107849863}
   - component: {fileID: 2107849862}
   - component: {fileID: 2107849861}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: RedStriker (4)
   m_TagString: redAgent
   m_Icon: {fileID: 0}
@@ -3433,7 +3434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2688ef4a36349f9aa010020c32d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: 0e2b949bf7d37469786426a6d913f5af, type: 2}
+  brain: {fileID: 11400000, guid: 29ed78b3e8fef4340b3a1f6954b88f18, type: 2}
   agentParameters:
     agentCameras: []
     agentRenderTextures: []

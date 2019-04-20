@@ -16,7 +16,7 @@ public class AgentSoccer : Agent
     
     public Team team;
     public AgentRole agentRole;
-    float kickPower, timePenalty=-0.5f;
+    float kickPower, timePenalty=-1f/3000f;
     int playerIndex;
     public SoccerFieldArea area;
     
@@ -103,12 +103,12 @@ public class AgentSoccer : Agent
             opponentGoal = area.redGoal;
         }
 
+        AddVectorObs(teamId);
+        AddVectorObs(playerIndex);
         AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 0f));
         // explanation: https://github.com/Unity-Technologies/ml-agents/issues/1483
         // 6-dim onehot vec + [unknown_flag, distance]
         // AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 1f, 0f));
-        AddVectorObs(playerIndex);
-        AddVectorObs(teamId);
         AddVectorObs(transform.position.x);
         AddVectorObs(transform.position.y);
         AddVectorObs(transform.position.z);

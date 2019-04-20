@@ -1,6 +1,5 @@
 ﻿#if ENABLE_TENSORFLOW
 using System.Collections.Generic;
-using TensorFlow;
 using System.Linq;
 using System;
 using UnityEngine.Profiling;
