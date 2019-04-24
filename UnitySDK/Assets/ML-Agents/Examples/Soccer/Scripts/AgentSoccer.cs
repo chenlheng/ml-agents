@@ -16,7 +16,7 @@ public class AgentSoccer : Agent
     
     public Team team;
     public AgentRole agentRole;
-    float kickPower, timePenalty=-1f/3000f;
+    float kickPower, timePenalty=0;
     int playerIndex;
     public SoccerFieldArea area;
     
@@ -79,8 +79,9 @@ public class AgentSoccer : Agent
     {
 
         // Ray-based observation
-        float rayDistance = 40f;
-        float[] rayAngles = { 0f, 45f, 90f, 135f, 180f, 110f, 70f };
+        float rayDistance = 100000f;
+//        float[] rayAngles = { 0f, 45f, 90f, 135f, 180f, 110f, 70f };
+        float[] rayAngles = { 0f, 15f, 30f, 45f, 60f, 75f, 90f, 105f, 120f, 135f, 150f, 165f, 180f };
         string[] detectableObjects;
 
         int teamId = 0;
@@ -172,6 +173,7 @@ public class AgentSoccer : Agent
         transform.Rotate(rotateDir, Time.deltaTime * 100f);
         agentRb.AddForce(dirToGo * academy.agentRunSpeed,
                          ForceMode.VelocityChange);
+        // Add an instant velocity change to the rigidbody, ignoring its mass.
 
     }
 
@@ -193,7 +195,7 @@ public class AgentSoccer : Agent
     /// </summary>
     void OnCollisionEnter(Collision c)
     {
-        float force = 2000f * kickPower;
+        float force = 200f * kickPower;
         if (c.gameObject.CompareTag("ball"))
         {
             Vector3 dir = c.contacts[0].point - transform.position;
