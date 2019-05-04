@@ -43,6 +43,7 @@ public class SoccerFieldArea : MonoBehaviour
     SoccerAcademy academy;
     public float blueBallPosReward;
     public float redBallPosReward;
+    public int playerNumber;
 
     public IEnumerator GoalScoredSwapGroundMaterial(Material mat, float time)
     {
@@ -54,6 +55,7 @@ public class SoccerFieldArea : MonoBehaviour
 
     void Awake()
     {
+        playerNumber = GameObject.FindGameObjectsWithTag("redAgent").Length + GameObject.FindGameObjectsWithTag("blueAgent").Length;
         academy = FindObjectOfType<SoccerAcademy>();
         groundRenderer = centerPitch.GetComponent<Renderer>(); 
         groundMaterial = groundRenderer.material;
@@ -131,30 +133,54 @@ public class SoccerFieldArea : MonoBehaviour
     }
 
 
-    public Vector3 GetRandomSpawnPos(AgentSoccer.AgentRole role, AgentSoccer.Team team)
+    public Vector3 GetRandomSpawnPos(AgentSoccer.AgentRole role, AgentSoccer.Team team, int posOrder)
     {
-        float xOffset = 0f;
+        float xOffset = 15f;
 
-        if (role == AgentSoccer.AgentRole.Striker)
-        {
-            xOffset = 7f;
+//        if (role == AgentSoccer.AgentRole.Striker)
+//        {
+//            xOffset = 15f;
+//        }
+//        if (team == AgentSoccer.Team.Blue)
+//        {
+//            xOffset = xOffset * -1f;
+//        }
+//
+        Vector3 pos = new Vector3(xOffset, 0f, 0f);
+        int dist = 7;
+        switch (posOrder){
+            case 0:
+                pos += new Vector3(-1f * dist,  0f,     1f * dist);
+                break;
+            case 1:
+                pos += new Vector3(-1f * dist,  0f,     -1f * dist);
+                break;
+            case 2:
+                pos += new Vector3(0f * dist,   0f,     1f * dist);
+                break;
+            case 3:
+                pos += new Vector3(0f * dist,   0f,     -1f * dist);
+                break;
+            case 4:
+                pos += new Vector3(1f * dist,   0f,     0f * dist);
+                break;
         }
-        if (team == AgentSoccer.Team.Blue)
-        {
-            xOffset = xOffset * -1f;
+        
+        if (team == AgentSoccer.Team.Blue){
+            pos = pos * -1f;
         }
-        var randomSpawnPos = ground.transform.position + 
-                               new Vector3(xOffset, 0f, 0f) 
-                               + (Random.insideUnitSphere * 2);
+
+        var randomSpawnPos = ground.transform.position + pos
+                               + (Random.insideUnitSphere * 1);
         randomSpawnPos.y = ground.transform.position.y + 2;
         return randomSpawnPos;
     }
-
+    
     public Vector3 GetBallSpawnPosition()
     {
         var randomSpawnPos = ground.transform.position + 
-                                new Vector3(0f, 0f, 0f);  // ball respawns in the center of field
-                             // + (Random.insideUnitSphere * 2);
+                                new Vector3(0f, 0f, 0f)
+                              + (Random.insideUnitSphere * 1);
         randomSpawnPos.y = ground.transform.position.y + 2;
         return randomSpawnPos;
     }

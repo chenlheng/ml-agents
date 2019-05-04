@@ -81,11 +81,15 @@ public class AgentSoccer : Agent
         // Ray-based observation
         float rayDistance = 100000f;
 //        float[] rayAngles = { 0f, 45f, 90f, 135f, 180f, 110f, 70f };
-        float[] rayAngles = { 0f, 15f, 30f, 45f, 60f, 75f, 90f, 105f, 120f, 135f, 150f, 165f, 180f };
+//        float[] rayAngles = { 0f, 5f, 10f, 15f, 20f, 25f, 30f, 35f, 40f, 45f, 50f, 55f, 60f, 65f, 70f, 75f, 80f, 85f, 90f, 95f, 100f, 105f, 110f, 115f, 120f, 125f, 130f, 135f, 140f, 145f, 150f, 155f, 160f, 165f, 170f, 175f, 180f, 185f, 190f, 195f, 200f, 205f, 210f, 215f, 220f, 225f, 230f, 235f, 240f, 245f, 250f, 255f, 260f, 265f, 270f, 275f, 280f, 285f, 290f, 295f, 300f, 305f, 310f, 315f, 320f, 325f, 330f, 335f, 340f, 345f, 350f, 355f, 360f};
+        float[] rayAngles = { 0f };
         string[] detectableObjects;
 
         int teamId = 0;
         Transform teamGoal, opponentGoal;
+        Vector3 forward = transform.forward;
+        forward.y = 0;
+        float headingAngle = Quaternion.LookRotation(forward).eulerAngles.y;
 
         if (team == Team.Red)
         {
@@ -134,6 +138,7 @@ public class AgentSoccer : Agent
         AddVectorObs(opponentGoal.position.x);
         AddVectorObs(opponentGoal.position.y);
         AddVectorObs(opponentGoal.position.z);
+        AddVectorObs(headingAngle);
     }
 
     public void MoveAgent(float[] act)
@@ -206,22 +211,25 @@ public class AgentSoccer : Agent
 
     public override void AgentReset()
     {
-        if (academy.randomizePlayersTeamForTraining)
+//        if (academy.randomizePlayersTeamForTraining)
+//        {
+//            ChooseRandomTeam();
+//        }
+        int posOrder;
+//        if (team == Team.Red)
+        if (playerIndex < area.playerNumber/2)
         {
-            ChooseRandomTeam();
-        }
-
-        if (team == Team.Red)
-        {
+            posOrder = playerIndex;
             JoinRedTeam(agentRole);
             transform.rotation = Quaternion.Euler(0f, -90f, 0f);
         }
         else
         {
+            posOrder = playerIndex - area.playerNumber/2;
             JoinBlueTeam(agentRole);
             transform.rotation = Quaternion.Euler(0f, 90f, 0f);
         }
-        transform.position = area.GetRandomSpawnPos(agentRole, team);
+        transform.position = area.GetRandomSpawnPos(agentRole, team, posOrder);
         agentRb.velocity = Vector3.zero;
         agentRb.angularVelocity = Vector3.zero;
         area.ResetBall();

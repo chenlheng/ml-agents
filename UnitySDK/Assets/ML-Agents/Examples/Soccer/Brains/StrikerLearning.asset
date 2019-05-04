@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StrikerLearning
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 130
+    vectorObservationSize: 35
     numStackedVectorObservations: 1
     vectorActionSize: 07000000
     cameraResolutions: []
