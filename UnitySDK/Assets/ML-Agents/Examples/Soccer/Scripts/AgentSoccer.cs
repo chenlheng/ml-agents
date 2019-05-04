@@ -1,5 +1,6 @@
 using UnityEngine;
 using MLAgents;
+using UnityEngine.UI;
 
 public class AgentSoccer : Agent
 {
@@ -200,7 +201,7 @@ public class AgentSoccer : Agent
     /// </summary>
     void OnCollisionEnter(Collision c)
     {
-        float force = 200f * kickPower;
+        float force = 1000f * kickPower;
         if (c.gameObject.CompareTag("ball"))
         {
             Vector3 dir = c.contacts[0].point - transform.position;
