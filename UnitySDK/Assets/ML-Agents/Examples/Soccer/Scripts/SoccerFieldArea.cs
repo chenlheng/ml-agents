@@ -122,7 +122,7 @@ public class SoccerFieldArea : MonoBehaviour
             }
         }
     }
-
+    
     public void RewardOrPunishPlayer(PlayerState ps, float striker)
     {
         if (ps.agentScript.agentRole == AgentSoccer.AgentRole.Striker)
@@ -135,7 +135,7 @@ public class SoccerFieldArea : MonoBehaviour
 
     public Vector3 GetRandomSpawnPos(AgentSoccer.AgentRole role, AgentSoccer.Team team, int posOrder)
     {
-        float xOffset = 15f;
+        float xOffset = 10f;
 
 //        if (role == AgentSoccer.AgentRole.Striker)
 //        {
@@ -148,30 +148,32 @@ public class SoccerFieldArea : MonoBehaviour
 //
         Vector3 pos = new Vector3(xOffset, 0f, 0f);
         int dist = 7;
+        int flag = 1;
+        if (team == AgentSoccer.Team.Blue){
+            flag = -1;
+        }
         switch (posOrder){
             case 0:
-                pos += new Vector3(-1f * dist,  0f,     1f * dist);
-                break;
-            case 1:
-                pos += new Vector3(-1f * dist,  0f,     -1f * dist);
-                break;
-            case 2:
                 pos += new Vector3(0f * dist,   0f,     1f * dist);
                 break;
-            case 3:
+            case 1:
                 pos += new Vector3(0f * dist,   0f,     -1f * dist);
+                break;
+            case 2:
+                pos += new Vector3(-1f * dist,  0f,     1f * dist);
+                break;
+            case 3:
+                pos += new Vector3(-1f * dist,  0f,     -1f * dist);
                 break;
             case 4:
                 pos += new Vector3(1f * dist,   0f,     0f * dist);
                 break;
         }
         
-        if (team == AgentSoccer.Team.Blue){
-            pos = pos * -1f;
-        }
-
-        var randomSpawnPos = ground.transform.position + pos
-                               + (Random.insideUnitSphere * 1);
+        pos = pos * flag;
+        var randomSpawnPos = ground.transform.position +
+// new Vector3(Random.Range(-20f, 20f) , 0f, Random.Range(-13f, 13f)); //random
+        pos + (Random.insideUnitSphere * 1); // fixed
         randomSpawnPos.y = ground.transform.position.y + 2;
         return randomSpawnPos;
     }
@@ -179,8 +181,8 @@ public class SoccerFieldArea : MonoBehaviour
     public Vector3 GetBallSpawnPosition()
     {
         var randomSpawnPos = ground.transform.position + 
-                                new Vector3(0f, 0f, 0f)
-                              + (Random.insideUnitSphere * 1);
+// new Vector3(Random.Range(-30f, 30f), 0f, Random.Range(-13f, 13f));  // random pos
+new Vector3(0f, 0f, 0f) + (Random.insideUnitSphere * 1); // fixed pos for view
         randomSpawnPos.y = ground.transform.position.y + 2;
         return randomSpawnPos;
     }

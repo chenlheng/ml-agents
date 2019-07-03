@@ -189,8 +189,8 @@ public class AgentSoccer : Agent
         // Existential penalty for strikers.
         if (agentRole == AgentRole.Striker)
         {
-            // AddReward(-1f / 3000f);
-            AddReward(timePenalty);
+//             AddReward(-1f / 3000f);
+//            AddReward(timePenalty);
         }
         MoveAgent(vectorAction);
 
@@ -207,6 +207,7 @@ public class AgentSoccer : Agent
             Vector3 dir = c.contacts[0].point - transform.position;
             dir = dir.normalized;
             c.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
+            AddReward(0.1f);
         }
     }
 
@@ -222,17 +223,24 @@ public class AgentSoccer : Agent
         {
             posOrder = playerIndex;
             JoinRedTeam(agentRole);
-            transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+            Vector3 rotationVector = new Vector3(0f, -90f, 0f);
+//            Vector3 rotationVector = new Vector3(0f, Random.Range(-90f, 90f), 0f); # random facing
+            transform.rotation = Quaternion.Euler(rotationVector);
+
         }
         else
         {
             posOrder = playerIndex - area.playerNumber/2;
             JoinBlueTeam(agentRole);
-            transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            Vector3 rotationVector = new Vector3(0f, 90f, 0f);
+//            Vector3 rotationVector = new Vector3(0f, Random.Range(-90f, 90f), 0f); # random facing
+            transform.rotation = Quaternion.Euler(rotationVector);
+
         }
         transform.position = area.GetRandomSpawnPos(agentRole, team, posOrder);
         agentRb.velocity = Vector3.zero;
         agentRb.angularVelocity = Vector3.zero;
         area.ResetBall();
+        academy.AcademyIgnoreCollision();
     }
 }

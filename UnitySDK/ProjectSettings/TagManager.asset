@@ -28,6 +28,7 @@ TagManager:
   - stone
   - redBackLineWall
   - blueBackLineWall
+  - ReflectionWall
   layers:
   - Default
   - TransparentFX

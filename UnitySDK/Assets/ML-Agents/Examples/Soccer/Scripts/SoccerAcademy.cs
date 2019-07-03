@@ -25,6 +25,14 @@ public class SoccerAcademy : Academy
     void Start()
     {
         Physics.gravity *= gravityMultiplier; //for soccer a multiplier of 3 looks good
+        AcademyIgnoreCollision();
+    }
+    public override void AcademyReset()
+    {
+    }
+
+    public void AcademyIgnoreCollision()
+    {
         foreach (GameObject redBackLineWall in GameObject.FindGameObjectsWithTag("redBackLineWall"))
         {
             Physics.IgnoreCollision(ball.GetComponent<Collider>(), redBackLineWall.GetComponent<Collider>());
@@ -50,60 +58,10 @@ public class SoccerAcademy : Academy
             }
         }
     }
-    public override void AcademyReset()
-    {
-        foreach (GameObject redBackLineWall in GameObject.FindGameObjectsWithTag("redBackLineWall"))
-        {
-//            Physics.IgnoreCollision(ball.GetComponent<Collider>(), redBackLineWall.GetComponent<Collider>());
-            foreach(GameObject redStriker in GameObject.FindGameObjectsWithTag("redAgent"))
-            {
-                Physics.IgnoreCollision(redStriker.GetComponent<Collider>(), redBackLineWall.GetComponent<Collider>());
-            }
-            foreach(GameObject blueStriker in GameObject.FindGameObjectsWithTag("blueAgent"))
-            {
-                Physics.IgnoreCollision(blueStriker.GetComponent<Collider>(), redBackLineWall.GetComponent<Collider>(), false);
-            }
-        }
-        foreach (GameObject blueBackLineWall in GameObject.FindGameObjectsWithTag("blueBackLineWall"))
-        {
-//            Physics.IgnoreCollision(ball.GetComponent<Collider>(), blueBackLineWall.GetComponent<Collider>());
-            foreach(GameObject blueStriker in GameObject.FindGameObjectsWithTag("blueAgent"))
-            {
-                Physics.IgnoreCollision(blueStriker.GetComponent<Collider>(), blueBackLineWall.GetComponent<Collider>());
-            }
-            foreach(GameObject redStriker in GameObject.FindGameObjectsWithTag("redAgent"))
-            {
-                Physics.IgnoreCollision(redStriker.GetComponent<Collider>(), blueBackLineWall.GetComponent<Collider>(), false);
-            }
-        }
-    }
-
+    
     public override void AcademyStep()
     {
-        foreach (GameObject redBackLineWall in GameObject.FindGameObjectsWithTag("redBackLineWall"))
-        {
-//            Physics.IgnoreCollision(ball.GetComponent<Collider>(), redBackLineWall.GetComponent<Collider>());
-            foreach(GameObject redStriker in GameObject.FindGameObjectsWithTag("redAgent"))
-            {
-                Physics.IgnoreCollision(redStriker.GetComponent<Collider>(), redBackLineWall.GetComponent<Collider>());
-            }
-            foreach(GameObject blueStriker in GameObject.FindGameObjectsWithTag("blueAgent"))
-            {
-                Physics.IgnoreCollision(blueStriker.GetComponent<Collider>(), redBackLineWall.GetComponent<Collider>(), false);
-            }
-        }
-        foreach (GameObject blueBackLineWall in GameObject.FindGameObjectsWithTag("blueBackLineWall"))
-        {
-//            Physics.IgnoreCollision(ball.GetComponent<Collider>(), blueBackLineWall.GetComponent<Collider>());
-            foreach(GameObject blueStriker in GameObject.FindGameObjectsWithTag("blueAgent"))
-            {
-                Physics.IgnoreCollision(blueStriker.GetComponent<Collider>(), blueBackLineWall.GetComponent<Collider>());
-            }
-            foreach(GameObject redStriker in GameObject.FindGameObjectsWithTag("redAgent"))
-            {
-                Physics.IgnoreCollision(redStriker.GetComponent<Collider>(), blueBackLineWall.GetComponent<Collider>(), false);
-            }
-        }
+        
     }
 
 }
