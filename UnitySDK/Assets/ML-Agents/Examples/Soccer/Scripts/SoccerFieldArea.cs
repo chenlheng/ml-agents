@@ -122,67 +122,47 @@ public class SoccerFieldArea : MonoBehaviour
             }
         }
     }
-    
+
     public void RewardOrPunishPlayer(PlayerState ps, float striker)
     {
-        if (ps.agentScript.agentRole == AgentSoccer.AgentRole.Striker)
-        {
-            ps.agentScript.AddReward(striker);
-        }
+
+        ps.agentScript.AddReward(striker);
         ps.agentScript.Done();  //all agents need to be reset
     }
 
 
     public Vector3 GetRandomSpawnPos(AgentSoccer.AgentRole role, AgentSoccer.Team team, int posOrder)
     {
-        float xOffset = 10f;
-
-//        if (role == AgentSoccer.AgentRole.Striker)
-//        {
-//            xOffset = 15f;
-//        }
-//        if (team == AgentSoccer.Team.Blue)
-//        {
-//            xOffset = xOffset * -1f;
-//        }
-//
+        // {-9f~13f, 0f, -6~6f}
+        float xOffset = 5f;
         Vector3 pos = new Vector3(xOffset, 0f, 0f);
-        int dist = 7;
+        int tier_interval = 5;
         int flag = 1;
         if (team == AgentSoccer.Team.Blue){
             flag = -1;
         }
         switch (posOrder){
             case 0:
-                pos += new Vector3(0f * dist,   0f,     1f * dist);
-                break;
+            pos += new Vector3(0f * tier_interval,   0f,     1f * tier_interval);
+            break;
             case 1:
-                pos += new Vector3(0f * dist,   0f,     -1f * dist);
-                break;
-            case 2:
-                pos += new Vector3(-1f * dist,  0f,     1f * dist);
-                break;
-            case 3:
-                pos += new Vector3(-1f * dist,  0f,     -1f * dist);
-                break;
-            case 4:
-                pos += new Vector3(1f * dist,   0f,     0f * dist);
-                break;
+            pos += new Vector3(0f * tier_interval,   0f,     -1f * tier_interval);
+            break;
         }
         
         pos = pos * flag;
         var randomSpawnPos = ground.transform.position +
-// new Vector3(Random.Range(-20f, 20f) , 0f, Random.Range(-13f, 13f)); //random
+//         new Vector3(Random.Range(-9f, 13f) , 0f, Random.Range(-6f, 6f)); //random
         pos + (Random.insideUnitSphere * 1); // fixed
         randomSpawnPos.y = ground.transform.position.y + 2;
         return randomSpawnPos;
     }
-    
+
     public Vector3 GetBallSpawnPosition()
     {
-        var randomSpawnPos = ground.transform.position + 
-// new Vector3(Random.Range(-30f, 30f), 0f, Random.Range(-13f, 13f));  // random pos
-new Vector3(0f, 0f, 0f) + (Random.insideUnitSphere * 1); // fixed pos for view
+        var randomSpawnPos = ground.transform.position +
+//         new Vector3(Random.Range(-9f, 9f), 0f, Random.Range(-6f, 6f));  // random pos
+        new Vector3(0f, 0f, 0f) + (Random.insideUnitSphere * 1); // fixed pos for view
         randomSpawnPos.y = ground.transform.position.y + 2;
         return randomSpawnPos;
     }

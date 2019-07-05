@@ -13,7 +13,7 @@ public class SoccerAcademy : Academy
     public float gravityMultiplier = 1;
     public bool randomizePlayersTeamForTraining = true;
     public int maxAgentSteps;
-    
+
     public GameObject ball;
     
     public float agentRunSpeed;
@@ -29,6 +29,7 @@ public class SoccerAcademy : Academy
     }
     public override void AcademyReset()
     {
+
     }
 
     public void AcademyIgnoreCollision()
@@ -61,7 +62,7 @@ public class SoccerAcademy : Academy
     
     public override void AcademyStep()
     {
-        
+
     }
 
 }

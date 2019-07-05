@@ -1,6 +1,5 @@
 using UnityEngine;
 using MLAgents;
-using UnityEngine.UI;
 
 public class AgentSoccer : Agent
 {
@@ -17,7 +16,7 @@ public class AgentSoccer : Agent
     
     public Team team;
     public AgentRole agentRole;
-    float kickPower, timePenalty=0;
+    float kickPower;
     int playerIndex;
     public SoccerFieldArea area;
     
@@ -78,20 +77,19 @@ public class AgentSoccer : Agent
 
     public override void CollectObservations()
     {
-
         // Ray-based observation
         float rayDistance = 100000f;
-//        float[] rayAngles = { 0f, 45f, 90f, 135f, 180f, 110f, 70f };
-//        float[] rayAngles = { 0f, 5f, 10f, 15f, 20f, 25f, 30f, 35f, 40f, 45f, 50f, 55f, 60f, 65f, 70f, 75f, 80f, 85f, 90f, 95f, 100f, 105f, 110f, 115f, 120f, 125f, 130f, 135f, 140f, 145f, 150f, 155f, 160f, 165f, 170f, 175f, 180f, 185f, 190f, 195f, 200f, 205f, 210f, 215f, 220f, 225f, 230f, 235f, 240f, 245f, 250f, 255f, 260f, 265f, 270f, 275f, 280f, 285f, 290f, 295f, 300f, 305f, 310f, 315f, 320f, 325f, 330f, 335f, 340f, 345f, 350f, 355f, 360f};
+        //        float[] rayAngles = { 0f, 45f, 90f, 135f, 180f, 110f, 70f };
+        //        float[] rayAngles = { 0f, 5f, 10f, 15f, 20f, 25f, 30f, 35f, 40f, 45f, 50f, 55f, 60f, 65f, 70f, 75f, 80f, 85f, 90f, 95f, 100f, 105f, 110f, 115f, 120f, 125f, 130f, 135f, 140f, 145f, 150f, 155f, 160f, 165f, 170f, 175f, 180f, 185f, 190f, 195f, 200f, 205f, 210f, 215f, 220f, 225f, 230f, 235f, 240f, 245f, 250f, 255f, 260f, 265f, 270f, 275f, 280f, 285f, 290f, 295f, 300f, 305f, 310f, 315f, 320f, 325f, 330f, 335f, 340f, 345f, 350f, 355f, 360f};
         float[] rayAngles = { 0f };
         string[] detectableObjects;
-
+        
         int teamId = 0;
         Transform teamGoal, opponentGoal;
         Vector3 forward = transform.forward;
         forward.y = 0;
         float headingAngle = Quaternion.LookRotation(forward).eulerAngles.y;
-
+        
         if (team == Team.Red)
         {
             detectableObjects = new[] { "ball", "redGoal", "blueGoal",
@@ -108,7 +106,7 @@ public class AgentSoccer : Agent
             teamGoal = area.blueGoal;
             opponentGoal = area.redGoal;
         }
-
+        
         AddVectorObs(teamId);
         AddVectorObs(playerIndex);
         AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 0f));
@@ -149,49 +147,42 @@ public class AgentSoccer : Agent
 
         int action = Mathf.FloorToInt(act[0]);
 
-        // Goalies and Strikers have slightly different action spaces.
-        if (agentRole == AgentRole.Striker)
+        
+        kickPower = 0f;
+        switch (action)
         {
-            kickPower = 0f;
-            switch (action)
-            {
-                case 1:
-                    dirToGo = transform.forward * 1f;
-                    kickPower = 1f;
-                    break;
-                case 2:
-                    dirToGo = transform.forward * -1f;
-                    break;
-                case 3:
-                    rotateDir = transform.up * 1f;
-                    break;
-                case 4:
-                    rotateDir = transform.up * -1f;
-                    break;
-                case 5:
-                    dirToGo = transform.right * -0.75f;
-                    break;
-                case 6:
-                    dirToGo = transform.right * 0.75f;
-                    break;
-            }
+            case 1:
+                dirToGo = transform.forward * 1f;
+                kickPower = 1f;
+                break;
+            case 2:
+                dirToGo = transform.forward * -1f;
+                break;
+            case 3:
+                rotateDir = transform.up * 1f;
+                break;
+            case 4:
+                rotateDir = transform.up * -1f;
+                break;
+            case 5:
+                dirToGo = transform.right * -0.75f;
+                break;
+            case 6:
+                dirToGo = transform.right * 0.75f;
+                break;
         }
+        
         transform.Rotate(rotateDir, Time.deltaTime * 100f);
         agentRb.AddForce(dirToGo * academy.agentRunSpeed,
                          ForceMode.VelocityChange);
-        // Add an instant velocity change to the rigidbody, ignoring its mass.
 
     }
 
 
     public override void AgentAction(float[] vectorAction, string textAction)
     {
-        // Existential penalty for strikers.
-        if (agentRole == AgentRole.Striker)
-        {
-//             AddReward(-1f / 3000f);
-//            AddReward(timePenalty);
-        }
+
+//        AddReward(-1f / 3000f);
         MoveAgent(vectorAction);
 
     }
@@ -201,7 +192,7 @@ public class AgentSoccer : Agent
     /// </summary>
     void OnCollisionEnter(Collision c)
     {
-        float force = 1000f * kickPower;
+        float force = 2000f * kickPower;
         if (c.gameObject.CompareTag("ball"))
         {
             Vector3 dir = c.contacts[0].point - transform.position;
@@ -213,29 +204,25 @@ public class AgentSoccer : Agent
 
     public override void AgentReset()
     {
-//        if (academy.randomizePlayersTeamForTraining)
-//        {
-//            ChooseRandomTeam();
-//        }
         int posOrder;
-//        if (team == Team.Red)
+        //        if (team == Team.Red)
         if (playerIndex < area.playerNumber/2)
         {
             posOrder = playerIndex;
             JoinRedTeam(agentRole);
             Vector3 rotationVector = new Vector3(0f, -90f, 0f);
-//            Vector3 rotationVector = new Vector3(0f, Random.Range(-90f, 90f), 0f); # random facing
+            //            Vector3 rotationVector = new Vector3(0f, Random.Range(-90f, 90f), 0f); # random facing
             transform.rotation = Quaternion.Euler(rotationVector);
-
+            
         }
         else
         {
             posOrder = playerIndex - area.playerNumber/2;
             JoinBlueTeam(agentRole);
             Vector3 rotationVector = new Vector3(0f, 90f, 0f);
-//            Vector3 rotationVector = new Vector3(0f, Random.Range(-90f, 90f), 0f); # random facing
+            //            Vector3 rotationVector = new Vector3(0f, Random.Range(-90f, 90f), 0f); # random facing
             transform.rotation = Quaternion.Euler(rotationVector);
-
+            
         }
         transform.position = area.GetRandomSpawnPos(agentRole, team, posOrder);
         agentRb.velocity = Vector3.zero;
